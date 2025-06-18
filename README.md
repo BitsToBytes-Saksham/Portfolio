@@ -6,7 +6,7 @@ This is my personal portfolio website, developed to showcase my technical expert
 
 The goal of this project is to present a concise yet compelling snapshot of my skills as a software developer. With a space-themed and minimal yet expressive user interface, this site is structured to offer recruiters and collaborators a professional overview of my experience and capabilities.
 
-## ✨ Key Features
+## 🧩 Key Features
 
 - Built with React and Vite for fast development and optimal performance
 - Fully responsive layout with a mobile-first approach
@@ -25,15 +25,14 @@ The goal of this project is to present a concise yet compelling snapshot of my s
 - Vercel (Deployment)
 
 ## 🗂️ Folder Structure
-
 .
-├── public/ # Static assets and metadata
+├── public/           # Static assets and metadata
 ├── src/
-│ ├── assets/ # Image and media resources
-│ ├── components/ # Reusable UI components
-│ ├── sections/ # Page sections (Hero, About, Projects, Contact)
-│ ├── App.jsx # Root application component
-│ └── main.jsx # Entry point
+│   ├── assets/       # Image and media resources
+│   ├── components/   # Reusable UI components
+│   ├── sections/     # Page sections (Hero, About, Projects, Contact)
+│   ├── App.jsx       # Root application component
+│   └── main.jsx      # Entry point
 
 ## 🧪 Installation and Development
 

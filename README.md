@@ -25,6 +25,7 @@ The goal of this project is to present a concise yet compelling snapshot of my s
 - Vercel (Deployment)
 
 ## 🗂️ Folder Structure
+'''
 .
 ├── public/           # Static assets and metadata
 ├── src/
@@ -32,7 +33,8 @@ The goal of this project is to present a concise yet compelling snapshot of my s
 │   ├── components/   # Reusable UI components
 │   ├── sections/     # Page sections (Hero, About, Projects, Contact)
 │   ├── App.jsx       # Root application component
-│   └── main.jsx      # Entry point
+│   └── main.jsx      # Entry point 
+'''
 
 ## 🧪 Installation and Development
 

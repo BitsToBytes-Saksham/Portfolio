@@ -1,4 +1,4 @@
-import { Briefcase, Code, User } from "lucide-react";
+import { Server, Code, User } from "lucide-react"; // changed Briefcase → Server
 
 export const AboutSection = () => {
   return (
@@ -21,9 +21,7 @@ export const AboutSection = () => {
               Let's collaborate and Build.
             </p>
 
-            <p className="text-muted-foreground">
-              
-            </p>
+            <p className="text-muted-foreground"></p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <a href="#contact" className="cosmic-button">
@@ -75,13 +73,12 @@ export const AboutSection = () => {
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
+                  <Server className="h-6 w-6 text-primary" /> {/* ← updated icon */}
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
+                  <h4 className="font-semibold text-lg">Backend Development</h4>
                   <p className="text-muted-foreground">
-                    Leading projects from conception to completion with agile
-                    methodologies.
+                    Building robust and scalable backend systems using Node.js, Express, and databases.
                   </p>
                 </div>
               </div>

@@ -10,21 +10,41 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    const form = e.target;
+
+    try {
+      await emailjs.sendForm(
+        "service_cefna7a",        // ✅ YOUR SERVICE ID
+        "template_qczo851",       // ✅ YOUR TEMPLATE ID
+        form,
+        "e0nvDOU4UwVhidjEh"       // ✅ YOUR PUBLIC KEY
+      );
+
       toast({
         title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        description: "Your message has been sent successfully.",
       });
+
+      form.reset();
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -33,6 +53,7 @@ export const ContactSection = () => {
         <h2 className="text-4xl font-bold text-center mb-6">
           Get In <span className="text-primary">Touch</span>
         </h2>
+
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           Have a project in mind or want to collaborate? Feel free to reach out.
           I'm always open to discussing new opportunities.
@@ -46,53 +67,48 @@ export const ContactSection = () => {
             </h3>
 
             <div className="space-y-6">
-              {/* Email */}
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=sakshamgupta.1107@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group hover:text-primary transition"
               >
-                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition">
-                  <Mail className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <span className="text-lg font-medium">E-Mail</span>
               </a>
 
-              {/* Phone */}
               <a
                 href="tel:+918707200000"
                 className="flex items-center gap-4 group hover:text-primary transition"
               >
-                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition">
-                  <Phone className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+                <div className="p-3 rounded-full bg-primary/10">
+                  <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <span className="text-lg font-medium">Phone No.</span>
               </a>
 
-              {/* Location */}
               <a
                 href="https://www.google.com/maps/place/Bengaluru,+India"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group hover:text-primary transition"
               >
-                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition">
-                  <MapPin className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+                <div className="p-3 rounded-full bg-primary/10">
+                  <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <span className="text-lg font-medium">Location</span>
               </a>
             </div>
 
-            {/* Social Links */}
             <div className="pt-10 text-center">
-              <h4 className="font-medium text-white mb-4">Connect With Me</h4>
-              <div className="flex justify-center gap-6 items-center">
+              <h4 className="font-medium mb-4">Connect With Me</h4>
+              <div className="flex justify-center gap-6">
                 <a
                   href="https://www.linkedin.com/in/sakshamgupta0711/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-primary transition"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
@@ -100,7 +116,6 @@ export const ContactSection = () => {
                   href="https://x.com/SakshamGupta_X"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-primary transition"
                 >
                   <Twitter className="h-5 w-5" />
                 </a>
@@ -108,7 +123,6 @@ export const ContactSection = () => {
                   href="https://www.instagram.com/sakshamgupta.11"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-primary transition"
                 >
                   <Instagram className="h-5 w-5" />
                 </a>
@@ -117,49 +131,45 @@ export const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div
-            className="bg-card p-10 rounded-2xl shadow-xl"
-            onSubmit={handleSubmit}
-          >
+          <div className="bg-card p-10 rounded-2xl shadow-xl">
             <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-            <form className="space-y-6">
+
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2">
                   Your Name
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  name="from_name"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background"
                   placeholder="First Name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2">
                   Your Email
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
+                  name="from_email"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background"
                   placeholder="example@gmail.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label className="block text-sm font-medium mb-2">
                   Your Message
                 </label>
                 <textarea
-                  id="message"
                   name="message"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background resize-none focus:ring-2 focus:ring-primary"
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background resize-none"
                   placeholder="Hello, I'd like to talk about..."
                 />
               </div>
@@ -181,3 +191,4 @@ export const ContactSection = () => {
     </section>
   );
 };
+

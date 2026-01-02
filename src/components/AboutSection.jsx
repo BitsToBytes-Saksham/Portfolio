@@ -29,7 +29,7 @@ export const AboutSection = () => {
               </a>
 
               <a
-                href="https://drive.google.com/file/d/10XW40X8B1KSzm4LjxOj2gdLLpkMYwj5j/view?usp=drivesdk"
+                href="https://drive.google.com/file/d/1O_uScQrYvb7PIYSPbBJo-jd4gOIc67VB/view"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
